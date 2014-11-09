@@ -19,7 +19,6 @@ class Post {
 						<h2 class="nav-tab-wrapper">
 							<span data-container="source" class="osfx-tab nav-tab nav-tab-active">Source</span>
 							<span data-container="chapters" class="osfx-tab nav-tab" id="osfx-chapters-button">Chapters</span>
-							<span data-container="validation" class="osfx-tab nav-tab" id="osfx-validate-button">Validation</span>
 						</h2>
 						<div id="osfx_tabs_wrapper">
 							<div id="osfx_source" class="osfx-tab-container osfx-visible">
@@ -33,6 +32,7 @@ class Post {
 									<input type="button" class="button" 
 										onclick="importShownotes(document.getElementById('_osfx_shownotes'), document.getElementById('importId').value, 'http://cdn.simon.waldherr.eu/projects/showpad-api/getPad/?id=$$$')" 
 										value="Import from ShowPad" />
+									<span id="osfx_validation_status"></span>
 								</p>
 
 								<script type="text/javascript">
@@ -50,32 +50,6 @@ class Post {
 									<input type="button" class="button"	id="import_into_publisher_button" value="Export to Podlove Publisher" />
 								</p>
 							</div>
-
-							<div id="osfx_validation" class="osfx-tab-container ">
-								<p>
-									<span id="osfx_validation_status"></span>
-									<table class="form-table" id="osfx_validation_table">        
-								        <tr valign="top">
-									        <td>
-									        	<table class="podlove_alternating" border="0" cellspacing="0">
-									        		<thead>
-									        			<tr>
-									        				<th>Line</th>
-									        				<th>Description</th>
-									        			</tr>
-									        		</thead>
-									        		<tbody id="osfx_validation_table_body" class="code">
-									        			<tr>
-									        				<td></td>
-									        				<td>SPINNER!</td>
-									        			</tr>
-									        		</tbody>
-									        	</table>
-									        </td>
-								        </tr>
-								    </table>
-								</p>
-							</div>
 						</div>
 					</div>
 
@@ -90,7 +64,9 @@ class Post {
 						jQuery("#ace-shownotes").css( 'position', 'relative' );
 						editor.getSession().on('change', function() {
 							textarea.val(editor.getSession().getValue());
+							OSFX.getParserResponse('osfx-validate');
 						});
+						OSFX.getParserResponse('osfx-validate');
 					</script>								
 				<?php
 			},

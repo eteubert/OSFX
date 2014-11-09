@@ -183,9 +183,11 @@ you can use the generic selector below, but it's slower:
 	background-repeat: no-repeat;
 	height: 35px;
 	line-height: 30px;
-	font-size: 20px;
+	font-size: 1.1em;
 	padding-left: 40px;
 	background-size: 30px;
+	float: right;
+	cursor: help;
 }
 
 .isValid {
@@ -238,4 +240,20 @@ you can use the generic selector below, but it's slower:
 
 .fullScreen {
 	overflow: hidden
+}
+
+#osfx-validation-error-counter {
+	display: none;
+}
+
+.osfx-counter-badge {
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	border-radius: 10px;
+	background-color: #c03b3b;
+	color: #FFF;
+	font-size: 0.8em;
+	margin-left: 5px;
 }

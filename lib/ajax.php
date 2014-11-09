@@ -22,7 +22,7 @@
 		}
 
 		function validate() {
-			$errors = "";
+			$errors = array();
 
 			if ( ! $_POST["source"] )
 				return;
@@ -36,8 +36,12 @@
 				if ( $shownote->isValid )
 					continue;
 
-				$errors .= "<tr><td>" . $shownote->line .  "</td><td>" . implode( "<br />", $shownote->errorMessage ) . "</td></tr>\n";
-			}
+				$errors[] = array(
+						'line' => $shownote->line,
+						'type' => 'error',
+						'text' => $shownote->errorMessage
+					);
+			}			
 
 			Ajax::respond_with_json( $errors );
 		}
