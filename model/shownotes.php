@@ -18,6 +18,18 @@ class Shownotes {
 		});
 	}
 
+	public function filter_by_property_with_multiple_values( $property, $values ) {
+		if ( !is_array($values) )
+			return;
+
+		$this->shownotes = array_filter($this->shownotes, function ( $shownote ) use ( $property, $values ) {
+			if ( in_array($shownote->$property, $values) )
+				return true;
+
+			return false;
+		});
+	}
+
 	public function order() {
 		// Reverse array to read the items backwards.
 		krsort($this->shownotes);

@@ -179,6 +179,14 @@ class OSFX {
 		    return $filtered_shownotes->shownotes;
 		});
 		$twig->addFilter($filtertype);
+		// Display specific types only
+		$filtertype = new Twig_SimpleFilter( "types", function ( $notes, $types ) use ( $shownotes ) {
+			$filtered_shownotes = clone $shownotes;
+			$filtered_shownotes->filter_by_property_with_multiple_values( "type", $types );
+
+		    return $filtered_shownotes->shownotes;
+		});
+		$twig->addFilter($filtertype);
 
 		// Affiliate the links
 		$affiliate = new Twig_SimpleFilter( "affiliate", function ( $shownote ) {
