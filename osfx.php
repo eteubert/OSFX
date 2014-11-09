@@ -134,6 +134,7 @@ class OSFX {
 		$shownotes->source = $source;
 		$shownotes->parse();
 		$shownotes->validate();
+		$shownotes->removeInValid();
 
 		$loader = new Twig_Loader_String();
 		$twig = new Twig_Environment($loader);

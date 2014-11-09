@@ -69,6 +69,7 @@ class Settings {
 						<input type="hidden" name="osfx_template[{{counter}}][editable]" id="osfx_template_{{counter}}_editable" value="{{editable}}" />
 						<input type="text" name="osfx_template[{{counter}}][id]" value="{{name}}" placeholder="Template ID" class="osfx_template_id" {{editable}} />
 						<label for="">Description to identify the template in the shortcode</label>
+						<span id="fullscreen-{{counter}}" data-counter="{{counter}}" class="fullscreen-on fullscreen-button"></span>
 						<div id="ace-shownotes-{{counter}}" class="ace-shownotes"></div>
 						<textarea cols="80" rows="10" id="osfx_template_{{counter}}_source" name="osfx_template[{{counter}}][source]" class="osfx_template_source">{{source}}</textarea>
 						<label for="">Templates support HTML and Twig. Read the Template Guide to get started.</label>
@@ -117,6 +118,13 @@ class Settings {
 				  			$(this).closest("tr").remove();	
 				  		} );
 
+				  		$("#fullscreen-" + template_counter).on( 'click', function () {
+				  			$(document.body).toggleClass("fullScreen");
+				  			$("#ace-shownotes-" + $(this).data("counter")).toggleClass("fullScreen-editor");
+				  			$(this).toggleClass("fullscreen-on").toggleClass("fullscreen-off");
+				  			editor[$(this).data("counter")].resize();
+				  		} );
+
 				  		editor[template_counter] = ace.edit("ace-shownotes-" + template_counter);
 				  		$("#ace-shownotes-" + template_counter).data("test", template_counter);
 				  		textarea[template_counter] = jQuery("#osfx_template_" + template_counter + "_source");
@@ -159,6 +167,13 @@ class Settings {
 				  		row.find("#osfx_template_triangle_" + template_counter).click();
 				  		$(".delete_template").on( 'click', function() {
 				  			$(this).closest("tr").remove();	
+				  		} );
+
+				  		$("#fullscreen-" + template_counter).on( 'click', function () {
+				  			$(document.body).toggleClass("fullScreen");
+				  			$("#ace-shownotes-" + $(this).data("counter")).toggleClass("fullScreen-editor");
+				  			$(this).toggleClass("fullscreen-on").toggleClass("fullscreen-off");
+				  			editor[$(this).data("counter")].resize();
 				  		} );
 
 				  		editor[template_counter] = ace.edit("ace-shownotes-" + template_counter);

@@ -39,7 +39,7 @@ class Shownote {
 			if ( strpos( $this->url, $affiliate_program['existing_affiliation_identifier'] ) === FALSE ) {
 				$this->url = preg_replace($affiliate_program['search_fragment'], 
 					str_replace( 
-							"{{affiliate-id}}", 
+							"{{affiliate-id}}",
 							$existing_affiliation['affiliate_id'], 
 							$affiliate_program['replace_fragment']
 						), 

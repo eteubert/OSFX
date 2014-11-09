@@ -183,12 +183,14 @@ class Shownotes {
 			}
 			// Fetch the timestamps.
 			preg_match('/^([0-9|:|.]+)/i', $line, $timestamp);
-			if ( isset( $timestamp[0] ) ) {
-				$timestamp_in_unix_format = strtotime( ( $this->isValidTimeStamp($timestamp[0]) ? '@' : '' ).$timestamp[0]); // Need to check for specific unix date!
-				if ( $initial_unix_timestamp == 0 ) {
-					$initial_unix_timestamp = $timestamp_in_unix_format;
-				}
-				$shownote->timestamp = $timestamp_in_unix_format - $initial_unix_timestamp;
+			if ( isset($timestamp[0]) )
+				if ( isset( $timestamp[0] ) ) {
+					if ( ctype_digit($timestamp[0]) ) {
+						$shownote->timestamp = new \DateTime();
+						$shownote->timestamp->setTimestamp($timestamp[0]);
+					} else {
+						$shownote->timestamp = new \DateTime($timestamp[0]);
+					}				
 				$line = $this->remove_from_line( $line, $timestamp[0] );
 			}
 			// Fetch the level.
@@ -219,6 +221,13 @@ class Shownotes {
 		}
 	}
 
+	public function removeInValid() {
+		foreach ($this->shownotes as $shownote_id => $shownote) {
+			if ( ! $shownote->isValid )
+				unset( $this->shownotes[$shownote_id] );
+		}
+	}
+
 	private function isValidTimeStamp($timestamp) {
 	// From https://stackoverflow.com/questions/2524680/check-whether-the-string-is-a-unix-timestamp
     	return ((string) (int) $timestamp === $timestamp) 
@@ -236,6 +245,5 @@ class Shownotes {
 		$modifier = str_replace(')', '\)', $modifier);
 		return preg_replace("/".$modifier."/i", '', $string, 1);
 	}
-
 }
 ?>

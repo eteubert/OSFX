@@ -13,8 +13,9 @@
 			$shownotes->parse();
 
 			foreach ($shownotes->shownotes as $shownote ) {
-				if ( $shownote->type == "chapter" )
-					$chapters .= date( "H:i:s", $shownote->timestamp ) . " " . $shownote->title . ( $shownote->url ? " <" . urldecode($shownote->url) . ">" : "" ) . "\n";
+				if ( $shownote->type == "chapter" && $shownote->timestamp !== FALSE ) {
+					$chapters .= $shownote->timestamp->format("H:i:s.u") . " " . $shownote->title . ( $shownote->url ? " <" . urldecode($shownote->url) . ">" : "" ) . "\n";
+				}
 			}
 
 			Ajax::respond_with_json( $chapters );
