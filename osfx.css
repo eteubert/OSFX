@@ -113,6 +113,7 @@ div.ace-shownotes {
 }
 
 p#osfx_import_container {
+	min-height: 30px;
 }
 
 @font-face {

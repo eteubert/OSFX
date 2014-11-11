@@ -26,15 +26,16 @@ class Post {
 								<div id="ace-shownotes"></div>
 								<textarea class="large-text" name="_osfx_shownotes" id="_osfx_shownotes" style="height: 200px;"><?php echo get_post_meta( $post->ID, '_shownotes' , TRUE); ?></textarea>
 
-								<?php if ( $showpadid = get_option('osfx_showpad') ) : ?>
 								<p id="osfx_import_container">
+									<?php if ( $showpadid = get_option('osfx_showpad') ) : ?>
 									<select id="importId"></select>
 									<input type="button" class="button" 
 										onclick="importShownotes(document.getElementById('_osfx_shownotes'), document.getElementById('importId').value, 'http://cdn.simon.waldherr.eu/projects/showpad-api/getPad/?id=$$$')" 
 										value="Import from ShowPad" />
+									<?php endif; ?>
 									<span id="osfx_validation_status"></span>
 								</p>
-
+								<?php if ( $showpadid = get_option('osfx_showpad') ) : ?>
 								<script type="text/javascript">
 									var shownotesname = '<?php echo $showpadid; ?>';
 									getPadList(document.getElementById('importId'),shownotesname);
