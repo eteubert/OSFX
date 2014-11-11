@@ -56,6 +56,8 @@ class Post {
 					<script type="text/javascript">
 						var editor = ace.edit("ace-shownotes");
 						var textarea = jQuery("#_osfx_shownotes");
+						var timeout;
+
 						textarea.hide();
 						editor.getSession().setUseWrapMode(true);
 						editor.setTheme("ace/theme/textmate");
@@ -64,7 +66,10 @@ class Post {
 						jQuery("#ace-shownotes").css( 'position', 'relative' );
 						editor.getSession().on('change', function() {
 							textarea.val(editor.getSession().getValue());
-							OSFX.getParserResponse('osfx-validate');
+							window.clearTimeout(timeout);
+							timeout = window.setTimeout(function(){
+								OSFX.getParserResponse('osfx-validate');
+							}, 800);
 						});
 						OSFX.getParserResponse('osfx-validate');
 					</script>								

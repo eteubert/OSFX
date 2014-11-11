@@ -135,7 +135,7 @@ class Shownotes {
 
 		// Remove the Header here. It is not needed for parsing the shownotes.
 		if( $header_closure_position = strpos($this->source, '/HEADER') ) {
-		    $linenumber = substr_count($this->source, "\n", 0, $header_closure_position) + 1; // Adjusting the linenumber.
+		    $linenumber = substr_count($this->source, "\n", 0, $header_closure_position) ; // Adjusting the linenumber.
 		    $this->header = substr( $this->source, 8, strpos($this->source, '/HEADER') - 9 );
 		    $this->source = substr( $this->source, strpos($this->source, '/HEADER') + 7 );
 		    $this->header();
@@ -193,8 +193,14 @@ class Shownotes {
 				}
 				$shownote->url = $url[1][0];
 			}
-			// Fetch the timestamps.
-			preg_match('/^([0-9|:|.]+)/i', $line, $timestamp);
+			/* Fetch the timestamps
+			 *
+			 * 3 valid formats:
+			 *  - UNIX timestamp (with int.length > 10)
+			 *  - H:i:s
+			 *  - H:i:s.u
+			 */
+			preg_match('/^(\d{10}\s)|(\d{2}:\d{2}:\d{2}\s)|(\d{2}:\d{2}:\d{2}.\d+\s)/i', $line, $timestamp);
 			if ( isset($timestamp[0]) )
 				if ( isset( $timestamp[0] ) ) {
 					if ( ctype_digit($timestamp[0]) ) {

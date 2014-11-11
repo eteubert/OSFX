@@ -43,6 +43,7 @@ div.osfx_template_source_wrapper {
 
 input.osfx_template_id {
 	width: 425px;
+	margin-top: 0.8em;
 }
 
 span.osfx_template_triangle {
@@ -174,7 +175,8 @@ you can use the generic selector below, but it's slower:
 #add_affiliate_program,
 #add_template {
 	font-weight: bold;
-	margin-top: -1em;
+	margin-top: -0.65em;
+	font-size: 1.5em;
 }
 
 .isValid,
@@ -214,6 +216,11 @@ you can use the generic selector below, but it's slower:
 .fullscreen-on {
 	background-image: url('img/ico_fullscreen-on.svg');
 	z-index: 99999;
+}
+
+div.osfx_template_source_wrapper .fullscreen-on {
+	left: 30px;
+	top: 21px;
 }
 
 .fullscreen-off {

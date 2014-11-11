@@ -41,7 +41,7 @@
 						'type' => 'error',
 						'text' => $shownote->errorMessage
 					);
-			}			
+			}
 
 			Ajax::respond_with_json( $errors );
 		}
