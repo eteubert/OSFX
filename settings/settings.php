@@ -15,9 +15,18 @@ class Settings {
 
 	function register_settings() {
 		register_setting( 'osfx_options', 'osfx_search' );
-		register_setting( 'osfx_options', 'osfx_template' );
+		register_setting( 'osfx_options', 'osfx_template', 'OSFX\Settings\Settings::osfx_sanitize_arrays' );
 		register_setting( 'osfx_options', 'osfx_showpad' );
-		register_setting( 'osfx_options', 'osfx_affiliations' );
+		register_setting( 'osfx_options', 'osfx_affiliations', 'OSFX\Settings\Settings::osfx_sanitize_arrays' );
+	}
+
+	static function osfx_sanitize_arrays($array) {
+		foreach ($array as $key => $values) {
+			if ( ! array_filter($array[$key]) ) {
+				unset($array[$key]);
+			}
+		}
+		return $array;
 	}
 
 	function osfx_settings_page() {
@@ -202,7 +211,7 @@ class Settings {
 			<table class="form-table">        
 		        <tr valign="top">
 			        <th scope="row">
-			        	Affiliations
+			        	Affiliate Links
 			        </th>
 			        <td>
 			        	<table class="podlove_alternating" border="0" cellspacing="0">

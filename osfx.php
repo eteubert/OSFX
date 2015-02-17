@@ -36,6 +36,25 @@ add_action( 'wp_ajax_osfx-validate', array( 'OSFX\Ajax', 'validate') );
 add_filter( 'posts_clauses', array( 'OSFX', 'shownotes_search_where'), 20, 1 );
 add_filter( 'posts_groupby', array( 'OSFX', 'shownotes_groupby') );
 
+// Bring Assets to the Podlove Publisher
+add_filter( 'podlove_chapter_assets', function ($assets) {
+	$assets['osfx'] = 'OSF X';
+	return $assets;
+}, 10, 1 );
+add_filter( 'podlove_episode_chapters', function ($post_id) {
+	$shownotes = new \OSFX\Model\Shownotes;
+	$shownotes->source = get_post_meta($post_id, '_shownotes', true);
+	$shownotes->parse();
+	$chapters = '';
+
+	foreach ($shownotes->shownotes as $shownote ) {
+		if ( $shownote->type == "chapter" && $shownote->timestamp !== FALSE ) {
+			$chapters .= $shownote->timestamp->format("H:i:s.u") . " " . $shownote->title . ( $shownote->url ? " <" . urldecode($shownote->url) . ">" : "" ) . "\n";
+		}
+	}
+	return $chapters;
+});
+
 add_shortcode( 'shownotes', array( 'OSFX', 'template' ) );
 
 class OSFX {
