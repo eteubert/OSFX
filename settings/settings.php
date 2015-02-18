@@ -78,7 +78,7 @@ class Settings {
 						<input type="hidden" name="osfx_template[{{counter}}][editable]" id="osfx_template_{{counter}}_editable" value="{{editable}}" />
 						<input type="text" name="osfx_template[{{counter}}][id]" value="{{name}}" placeholder="Template ID" class="osfx_template_id" {{editable}} />
 						<label for="">Description to identify the template in the shortcode</label>
-						<span id="fullscreen-{{counter}}" data-counter="{{counter}}" class="fullscreen-on fullscreen-button"></span>
+						<span id="fullscreen-{{counter}}" data-counter="{{counter}}" class="fullscreen-on osfx-fullscreen-button"></span>
 						<div id="ace-shownotes-{{counter}}" class="ace-shownotes"></div>
 						<textarea cols="80" rows="10" id="osfx_template_{{counter}}_source" name="osfx_template[{{counter}}][source]" class="osfx_template_source">{{source}}</textarea>
 						<label for="">Templates support HTML and Twig. Read the Template Guide to get started.</label>

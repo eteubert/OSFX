@@ -203,7 +203,7 @@ you can use the generic selector below, but it's slower:
 	color: #B50000;
 }
 
-.fullscreen-button {
+.osfx-fullscreen-button {
 	display: inline-block;
 	position: relative;
 	top: 5px;
@@ -224,7 +224,7 @@ div.osfx_template_source_wrapper .fullscreen-on {
 	top: 21px;
 }
 
-.fullscreen-off {
+.osfx-fullscreen-button.fullscreen-off {
 	position: fixed;
 	z-index: 999999;
 	top: 0;
@@ -233,7 +233,7 @@ div.osfx_template_source_wrapper .fullscreen-on {
 	background-image: url('img/ico_fullscreen-off.svg') !important;
 }
 
-.fullScreen .fullScreen-editor{
+.osfx-fullscreen-button.fullScreen .fullScreen-editor{
 	height: auto!important;
 	width: auto!important;
 	border: 0;
@@ -246,7 +246,7 @@ div.osfx_template_source_wrapper .fullscreen-on {
 	z-index: 99999;
 }
 
-.fullScreen {
+.osfx-fullscreen-button.fullScreen {
 	overflow: hidden
 }
 

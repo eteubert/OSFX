@@ -22,7 +22,7 @@ class Post {
 						</h2>
 						<div id="osfx_tabs_wrapper">
 							<div id="osfx_source" class="osfx-tab-container osfx-visible">
-								<span id="fullscreen" class="fullscreen-on fullscreen-button"></span>
+								<span id="fullscreen" class="fullscreen-on osfx-fullscreen-button"></span>
 								<div id="ace-shownotes"></div>
 								<textarea class="large-text" name="_osfx_shownotes" id="_osfx_shownotes" style="height: 200px;"><?php echo get_post_meta( $post->ID, '_shownotes' , TRUE); ?></textarea>
 

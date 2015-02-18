@@ -43,6 +43,8 @@
 					);
 			}
 
+
+
 			Ajax::respond_with_json( $errors );
 		}
 

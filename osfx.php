@@ -4,8 +4,8 @@
  * Plugin URI:  http://wordpress.org/extend/plugins/podlove-podcasting-plugin-for-wordpress/
  * Description: (Non breaking) OSF Shownotes
  * Version:     0.1-alpha
- * Author:      Podlove
- * Author URI:  http://podlove.org
+ * Author:      chemiker
+ * Author URI:  http://e.nigma.de
  * License:     MIT
  * License URI: license.txt
  * Text Domain: osfx
