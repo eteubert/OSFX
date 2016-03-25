@@ -93,6 +93,10 @@ class Settings {
 				var template_counter = 0;
 				var templates = <?php echo json_encode(get_option('osfx_template')); ?>;
 
+				if (!templates) {
+					templates = [];
+				}
+
 				(function($) {
 				  $( document ).ready( function() {
 				  	var editor = new Object();
